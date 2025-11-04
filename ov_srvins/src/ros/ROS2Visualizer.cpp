@@ -12,20 +12,16 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 3.0 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this program. If not, see
  * <https://www.gnu.org/licenses/>.
  */
-
-
-
-
 
 #include "ROS2Visualizer.h"
 
@@ -214,10 +210,10 @@ void ROS2Visualizer::setup_subscribers(
     // use move logic here...)
     auto image_sub0 =
         std::make_shared<message_filters::Subscriber<sensor_msgs::msg::Image>>(
-            _node, cam_topic0);
+            _node, cam_topic0, rclcpp::SensorDataQoS().get_rmw_qos_profile());
     auto image_sub1 =
         std::make_shared<message_filters::Subscriber<sensor_msgs::msg::Image>>(
-            _node, cam_topic1);
+            _node, cam_topic1, rclcpp::SensorDataQoS().get_rmw_qos_profile());
     auto sync = std::make_shared<message_filters::Synchronizer<sync_pol>>(
         sync_pol(10), *image_sub0, *image_sub1);
     sync->registerCallback(std::bind(&ROS2Visualizer::callback_stereo, this,
@@ -250,7 +246,7 @@ void ROS2Visualizer::setup_subscribers(
       //    std::bind(&ROS2Visualizer::callback_monocular, this,
       //    std::placeholders::_1, i));
       auto sub = _node->create_subscription<sensor_msgs::msg::Image>(
-          cam_topic, 10,
+          cam_topic, rclcpp::SensorDataQoS(),
           [this, i](const sensor_msgs::msg::Image::SharedPtr msg0) {
             callback_monocular(msg0, i);
           });

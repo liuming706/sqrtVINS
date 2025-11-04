@@ -11,8 +11,8 @@
     <arg name="use_stereo"  default="true" />
     <arg name="bag_start"   default="0.0" /> <!-- v1-2: 0, mh1: 40, mh2: 35, mh3: 17.5, mh4-5: 15 -->
     <arg name="bag_durr"    default="-1" />  
-    <arg name="dataset"     default="V1_01_easy" /> <!-- V1_01_easy, V1_02_medium, V2_02_medium, V2_03_difficult,MH_04_difficult, dataset-room1_512_16 -->
-    <arg name="bag"         default="$(env HOME)/datasets/$(arg config)/$(arg dataset).bag" />
+    <arg name="dataset"     default="MH_01_easy" /> <!-- V1_01_easy, V1_02_medium, V2_02_medium, V2_03_difficult,MH_04_difficult, dataset-room1_512_16 -->
+    <arg name="bag"         default="$(env HOME)/workspace/datasets/$(arg config)/$(arg dataset).bag" />
 
     <!-- saving trajectory path and timing information -->
     <arg name="dosave"      default="true" />

@@ -2,7 +2,7 @@
 
     <!-- what config we are going to run (should match folder name) -->
     <arg name="verbosity"   default="INFO" /> <!-- ALL, DEBUG, INFO, WARNING, ERROR, SILENT -->
-    <arg name="config"      default="euroc_mav" /> <!-- euroc_mav, tum_vi, rpng_aruco -->
+    <arg name="config"      default="webots" /> <!-- euroc_mav, tum_vi, rpng_aruco -->
     <arg name="config_path" default="$(find ov_srvins)/../config/$(arg config)/estimator_config.yaml" />
 
     <!-- mono or stereo and what ros bag to play -->
@@ -60,14 +60,14 @@
     </group>
 
     <!-- path viz of aligned gt -->
-    <group if="$(arg dolivetraj)">
+    <!-- <group if="$(arg dolivetraj)">
         <arg name="node_name"   default="ov_srvins" />
         <node name="live_align_trajectory_$(arg node_name)" pkg="ov_eval" type="live_align_trajectory" output="screen" required="true">
             <param name="alignment_type" type="str" value="posyaw" />
             <param name="path_gt"        type="str" value="$(arg path_gt)" />
             <param name="sub_topic"      type="str" value="/$(arg node_name)/pathimu" />
         </node>
-    </group>
+    </group> -->
 
 
 </launch>
